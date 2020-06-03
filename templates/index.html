@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Citizen Complaint Processing</title>
+     {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark sticky-top" style="background-color: #6c757d;font-size: 23px;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="{% static 'complaint.png' %}" width="60" height="60"></a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <img src="{% static  'new_register.png'%}" width="60" height="60">
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/registration">New User?Register</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<h1 style="color: #9fcdff;font-family: Arial, sans-serif;font-size: 40px;font-weight: bold;margin-top: 40px" align="center">CITIZEN COMPLAINT PROCESSING SYSTEM</h1>
+<h3 style="font-family: 'Cooper Black';margin-top: 40px;color: white" align="center">Welcome to the online complaint processing portal</h3>
+<div align="center" style="margin-top: 70px">
+<a href="/adminlogin" class="btn btn-outline-primary btn-lg">Admin Login</a>
+    <a href="/user" class="btn btn-outline-primary btn-lg">User Login</a>
+</div>
+<div class="container-fluid" style="margin-top: 40px">
+    <div class="row jumbotron" style="background: none; border-style: solid; border-width: thin; border-color: white">
+        <p class="lead" style="color: white">The citizen complaint processing system is an one step online portal for lodging complaints online.<br/>
+        This online portal makes the process of lodging complaints easy and quick.<br/>
+        People don't need to go to the respective departments to file a complaint instead they can do it by sitting at home.<br/>
+        New users have to register themselves by providing their details and login to the portal using their username and password.</p>
+    </div>
+</div>
+</body>
+</html>

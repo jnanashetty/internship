@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Complaint</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+      <div class="container-fluid">
+            <label style="font-size: 20px;font-weight: bold">User Complaint Deletion Page</label>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/index" style="margin-right: 30px; font-size: 20px; font-weight: bold">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logoutrequest" style="font-size: 20px; font-weight: bold">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="sidebar">
+        <header style="font-size: 22px;color: white;text-align: center;line-height: 70px;background: #063146;user-select: none">Menu</header>
+        <ul style="padding: 0">
+            <li style="list-style-type: none"><a href="/userprofile" style="text-decoration: none">User Account</a> </li>
+            <li style="list-style-type: none"><a href="/complaintregistration/" style="text-decoration: none">Register Complaint</a> </li>
+            <li style="list-style-type: none"><a href="/complaintstatus" style="text-decoration: none">View Complaint Status</a> </li>
+            <li style="list-style-type: none"><a href="/deletecomplaintpage" style="text-decoration: none">Delete Complaint</a> </li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="row" style="margin-left: 15%">
+            <div class="col">
+                <form style="background: white;padding:30px;border-radius: 10px; box-shadow: 0px 0px 10px 0px #000000;margin-top: 40px" method="post" action="/deletecomplaint/" class="needs-validation">
+                    {% csrf_token %}
+                    {% if success_message %}
+                        <script>alert("Complaint has been deleted successfully")</script>
+                    {% elif error_message %}
+                        <div class="alert alert-danger alert-dismissible fade show">{{ error_message }}</div>
+                    {% endif %}
+                    <div class="form-group">
+                        <label style="font-weight: bold;font-size: 30px;">Action Required</label>
+                    </div>
+                    <div class="form-row form-row-padding">
+                        <div class="form-group col-md-3">
+                            <label style="font-size: 20px;font-weight: bold">Complaint ID:</label>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <input type="number" class="form-control" id="cmpid" name="comp_id" placeholder="Enter the ID of complaint to be deleted" required>
+                        </div>
+                    </div>
+                    <div class="form-row form-row-padding" style="margin-top: 50px">
+                        <div class="form-group col-md-5"></div>
+                        <div class="form-group col-md-5">
+                            <button type="submit" class="btn btn-success btn-lg" style="margin-left: 20%;font-weight: bold">Delete</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

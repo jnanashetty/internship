@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Login</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                 var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+</head>
+<body>
+    <h1 style="position: absolute;top: 10%;left: 25%;font-family: 'Arial Rounded MT Bold';color: #e0a800;font-size: 50px">Citizen Complaint Processing Portal</h1>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <form class="form-container needs-validation" method="post">
+                    {% csrf_token %}
+                     {% if error_message %}
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            <strong>Error!</strong> {{ error_message }}
+                        </div>
+                     {% elif newuser_error_message %}
+                        <div class="alert alert-danger"><a href="/registration/" style="color: #1e7e34">{{ newuser_error_message }} </a> </div>
+                    {% endif %}
+                    <h2 style="color: white">User Login</h2>
+                    <div class="form-group" style="margin-top: 30px">
+                        <label style="color: white">Email Id:</label>
+                        <input type="email" class="form-control" id="email_id" name="email" placeholder="Enter your Email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label style="color: white">Password:</label>
+                        <input type="password" class="form-control" id="pswd" name="password" placeholder="Enter password" required>
+                    </div>
+                    <div class="form-group" style="margin-top: 40px;">
+                        <button type="submit" class="btn btn-success btn-block" formaction="/userlogin/">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

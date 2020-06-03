@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Account</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+            <label style="font-size: 30px;font-weight: bold">WELCOME {{ userinfo.fname }}</label>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/index" style="margin-right: 30px; font-size: 20px; font-weight: bold">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logoutrequest" style="font-size: 20px; font-weight: bold">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="sidebar">
+        <header style="font-size: 22px;color: white;text-align: center;line-height: 70px;background: #063146;user-select: none">Menu</header>
+            <ul style="padding: 0">
+                <li style="list-style-type: none"><a href="/userprofile" style="text-decoration: none">User Account</a> </li>
+                <li style="list-style-type: none"><a href="/complaintregistration/" style="text-decoration: none">Register Complaint</a> </li>
+                <li style="list-style-type: none"><a href="/complaintstatus" style="text-decoration: none">View Complaint Status</a> </li>
+                <li style="list-style-type: none"><a href="/deletecomplaintpage" style="text-decoration: none">Delete Complaint</a> </li>
+            </ul>
+    </div>
+    <div class="container">
+        <div class="row" style="margin-left: 15%">
+            <div class="col">
+                <form style="background: white;padding:30px;border-radius: 10px; box-shadow: 0px 0px 10px 0px #000000;margin-top: 40px" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label style="font-weight: bold;font-size: 30px;">Your Profile</label>
+                    </div>
+                    <div class="form-row form-row-padding">
+                        <div class="form-group col-md-3">
+                            <label style="font-size: 20px;font-weight: bold">First Name:</label>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <input type="text" class="form-control" id="fn" name="first_name" value="{{ userinfo.fname }}" disabled>
+                        </div>
+                    </div>
+                    <div class="form-row form-row-padding">
+                        <div class="form-group col-md-3">
+                            <label style="font-size: 20px;font-weight: bold">Second Name:</label>
+                        </div>
+                        <div class="form-group col-md-5">
+                             <input type="text" class="form-control" id="sn" name="second_name" value="{{ userinfo.sname }}" disabled>
+                        </div>
+                    </div>
+                    <div class="form-row form-row-padding">
+                        <div class="form-group col-md-3">
+                            <label style="font-size: 20px;font-weight: bold">Email Address:</label>
+                        </div>
+                        <div class="form-group col-md-5">
+                             <input type="text" class="form-control" id="eaddr" name="email" value="{{ userinfo.email_id }}" disabled>
+                        </div>
+                    </div>
+                    <div class="form-row form-row-padding">
+                        <div class="form-group col-md-3">
+                            <label style="font-size: 20px;font-weight: bold">Address:</label>
+                        </div>
+                        <div class="form-group col-md-5">
+                             <input type="text" class="form-control" id="addr" name="address" value="{{ userinfo.address }}" required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <button type="submit" class="btn btn-secondary btn-sm" style="margin-left: 25%;font-size: large;font-weight: bold" formaction="/changeaddress/">Change</button>
+                        </div>
+                    </div>
+                    <div class="form-row form-row-padding">
+                        <div class="form-group col-md-3">
+                            <label style="font-size: 20px;font-weight: bold;margin-left: 0%">City:</label>
+                        </div>
+                        <div class="form-group col-md-5">
+                             <input type="text" class="form-control" id="city" name="inp_city" value="{{ userinfo.city }}" required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <button type="submit" class="btn btn-secondary btn-sm" style="margin-left: 25%;font-size: large;font-weight: bold" formaction="/changecity/">Change</button>
+                        </div>
+                    </div>
+                    <div class="form-row form-row-padding">
+                        <div class="form-group col-md-3">
+                            <label style="font-size: 20px;font-weight: bold">State:</label>
+                        </div>
+                        <div class=" form-group col-md-5">
+                            <input type="text" name="inp_state" id="state" class="form-control" value="{{ userinfo.state }}" required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <button type="submit" class="btn btn-secondary btn-sm" style="margin-left: 25%;font-size: large;font-weight: bold" formaction="/changestate/">Change</button>
+                        </div>
+                    </div>
+                    <div class="form-row form-row-padding">
+                        <div class="form-group col-md-3">
+                           <label style="font-size: 20px;font-weight: bold">Pin:</label>
+                        </div>
+                        <div class="form-group col-md-5">
+                           <input type="text" id="pin" class="form-control" name="pincode" value="{{ userinfo.pin }}" required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <button type="submit" class="btn btn-secondary btn-sm" style="margin-left: 25%;font-size: large;font-weight: bold" formaction="/changepin/">Change</button>
+                        </div>
+                    </div>
+                    <div class="form-row form-row-padding">
+                        <div class="form-group col-md-3">
+                            <label style="font-size: 20px;font-weight: bold">Gender:</label>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <input type="text" class="form-control" id="gend" name="gender" value="{{ userinfo.gender }}" disabled>
+                        </div>
+                    </div>
+                    <div class="form-row form-row-padding">
+                        <div class="form-group col-md-3">
+                            <label style="font-size: 20px;font-weight: bold">Age:</label>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <input type="text" class="form-control" id="age1" name="age" value="{{ userinfo.age }}" disabled>
+                        </div>
+                    </div>
+                    <div class="form-row form-row-padding">
+                        <div class="form-group col-md-3">
+                            <label style="font-size: 20px;font-weight: bold">Phone:</label>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <input type="text" class="form-control" id="contactno" name="phoneno" value="{{ userinfo.phone }}" required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <button type="submit" class="btn btn-secondary btn-sm" style="margin-left: 25%;font-size: large;font-weight: bold" formaction="/changephone/">Change</button>
+                        </div>
+                    </div>
+                    <div class="form-row form-row-padding" style="margin-top: 50px">
+                        <div class="form-group col-md-5">
+                            <button type="submit" class="btn btn-success btn-lg" style="margin-left: 20%;font-weight: bold" formaction="/changepasswordrequest/">Change Password</button>
+                        </div>
+                         <div class="form-group col-md-5">
+                              <button type="submit" class="btn btn-success btn-lg" style="margin-left: 75%;font-weight: bold" formaction="/deleteuser/">Delete Account</button>
+                         </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

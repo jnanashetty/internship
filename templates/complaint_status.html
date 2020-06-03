@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Complaint Status</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+            <label style="font-size: 20px;font-weight: bold">Complaint Status Page</label>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/index" style="margin-right: 30px; font-size: 20px; font-weight: bold">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logoutrequest" style="font-size: 20px; font-weight: bold">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+     <div class="container" style="margin-right: 0%;margin-left: 0%; padding-right: 0%; padding-left: 0%">
+         <div class="row">
+             <div class="col">
+                 <div class="sidebar">
+                    <header style="font-size: 22px;color: white;text-align: center;line-height: 70px;background: #063146;user-select: none">Menu</header>
+                        <ul style="padding: 0">
+                            <li style="list-style-type: none"><a href="/userprofile" style="text-decoration: none">User Account</a> </li>
+                            <li style="list-style-type: none"><a href="/complaintregistration/" style="text-decoration: none">Register Complaint</a> </li>
+                            <li style="list-style-type: none"><a href="/complaintstatus" style="text-decoration: none">View Complaint Status</a> </li>
+                            <li style="list-style-type: none"><a href="/deletecomplaintpage" style="text-decoration: none">Delete Complaint</a> </li>
+                        </ul>
+                 </div>
+              <div class="col" style="margin-left: 21%">
+                  <table class="table table-hover">
+                      <thead class="thead-dark">
+                      <tr>
+                            <th>Complaint ID</th>
+                            <th>Department</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Location</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                       </tr>
+                      </thead>
+                      <tbody>
+                        {% for list in complaints %}
+                        <tr class="table-secondary">
+                            <td class="align-middle">{{ list.id }}</td>
+                            <td class="align-middle">{{ list.department }}</td>
+                            <td class="align-middle">{{ list.category }}</td>
+                            <td class="align-middle">{{ list.complaint_desc }}</td>
+                            <td class="align-middle">{{ list.location }}</td>
+                            <td class="align-middle">{{ list.date_of_occurence }}</td>
+                            <td class="align-middle">{% if list.status%}Under Process {% else %}Yet to be processed{% endif %}</td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                  </table>
+              </div>
+         </div>
+     </div>
+    </div>
+
+</body>
+</html>

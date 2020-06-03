@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Citizen Details</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+            <label style="font-size: 20px;font-weight: bold">Admin Citizen Details Viewing Page</label>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/index" style="margin-right: 30px; font-size: 20px; font-weight: bold">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/adminlogout/" style="font-size: 20px; font-weight: bold">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container" style="margin-right: 0%;margin-left: 0%; padding-right: 0%; padding-left: 0%">
+         <div class="row">
+             <div class="col">
+                 <div class="sidebar">
+                    <header style="font-size: 22px;color: white;text-align: center;line-height: 70px;background: #063146;user-select: none">Menu</header>
+                        <ul style="padding: 0">
+                            <li style="list-style-type: none"><a href="/adminviewcomplaints/" style="text-decoration: none">View Complaints</a> </li>
+                            <li style="list-style-type: none"><a href="/adminprocesscomplaints/" style="text-decoration: none">Process Comlaints</a> </li>
+                            <li style="list-style-type: none"><a href="/adminviewcitizens/" style="text-decoration: none">View Citizen Details</a> </li>
+                        </ul>
+                 </div>
+              <div class="col" style="margin-left: 21%">
+                  <table class="table table-hover">
+                      <thead class="thead-dark">
+                      <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Email Address</th>
+                            <th>Phone</th>
+                       </tr>
+                      </thead>
+                      <tbody>
+                        {% for citizen in allcitizens %}
+                        <tr class="table-secondary">
+                            <td class="align-middle">{{ citizen.fname }} {{ citizen.sname }}</td>
+                            <td class="align-middle">{{ citizen.address }},{{ citizen.city }},{{ citizen.state }},{{ citizen.pin }}</td>
+                            <td class="align-middle">{{ citizen.email_id }}</td>
+                            <td class="align-middle">{{ citizen.phone }}</td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                  </table>
+              </div>
+         </div>
+     </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                 var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-5">
+                <form style="background: white;padding:30px;border-radius: 10px; box-shadow: 0px 0px 10px 0px #000000;margin-top: 40px" class="needs-validation" id="emailForm" novalidate method="post" action="/submituser/">
+                    {% csrf_token %}
+                    {% if error_message %}
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            <strong>Error!</strong> {{ error_message }}
+                        </div>
+                    {% elif success_message %}
+                        <div class="alert alert-success"><a href="/user/" style="color: #1e7e34">{{ success_message }} </a> </div>
+                    {% endif %}
+                    <div class="form-group">
+                        <label style="font-weight: bold;font-size: 20px">Citizen Registration Form</label>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" id="fname" name="f_name" required>
+                            <div class="invalid-feedback">
+                                Please enter first name
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Second name</label>
+                            <input type="text" class="form-control" id="sname" name="s_name" required>
+                            <div class="invalid-feedback">
+                                Please enter second name
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Email Id</label>
+                            <input type="email" class="form-control" id="mailid" name="email_add" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required>
+                            <div class="invalid-feedback">
+                                Please provide valid email address
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Password</label>
+                            <input type="password" class="form-control" id="pswd" name="password" required>
+                            <div class="invalid-feedback">
+                                Please enter password
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" class="form-control" id="addr" name="address" required>
+                        <div class="invalid-feedback">
+                                Please enter address
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <label for="inputCity">City</label>
+                            <input type="text" class="form-control" id="city" name="input_city" required>
+                            <div class="invalid-feedback">
+                                Please enter city
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputState">State</label>
+                            <input type="text" class="form-control" id="state" name="input_state" required>
+                            <div class="invalid-feedback">
+                                Please enter state
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Pin</label>
+                            <input type="number" class="form-control" id="pin" name="pincode" required>
+                            <div class="invalid-feedback">
+                                Please enter pin
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <label style="font-size: large">Gender:</label>
+                        </div>
+                         <div class="col-md-3">
+                            <input type="radio" id="g1" name="gender" value="Female" checked>
+                             <label style="font-size: large">Female</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="radio" id="g2" name="gender" value="Male">
+                            <label style="font-size: large">Male</label>
+                        </div>
+                    </div>
+                     <div class="form-row">
+                        <div class="col-sm-6">
+                            <label>Age</label>
+                            <input type="number" class="form-control" id="age" name="user_age" required>
+                            <div class="invalid-feedback">
+                                Please enter age
+                            </div>
+                        </div>
+                         <div class="col-sm-6">
+                            <label>Phone</label>
+                            <input type="number" class="form-control" id="phone" name="phone_no" required oninput="javascript: if (this.value.length>this.maxLength())this.value=this.value.slice(0,this.maxLength());" maxlength="10">
+                             <div class="invalid-feedback">
+                                Please enter Phone no
+                            </div>
+                        </div>
+                     </div>
+                    <div class="form-row" style="margin-top: 20px">
+                         <button type="submit" class="btn btn-success btn-block">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

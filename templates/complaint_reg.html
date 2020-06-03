@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Complaint Registration</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                 var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+            <label style="font-size: 20px;font-weight: bold">Complaint Registration</label>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/index" style="margin-right: 30px; font-size: 20px; font-weight: bold">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logoutrequest" style="font-size: 20px; font-weight: bold">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="sidebar">
+        <header style="font-size: 22px;color: white;text-align: center;line-height: 70px;background: #063146;user-select: none">Menu</header>
+            <ul style="padding: 0">
+                <li style="list-style-type: none"><a href="/userprofile" style="text-decoration: none">User Account</a> </li>
+                <li style="list-style-type: none"><a href="/complaintregistration/" style="text-decoration: none">Register Complaint</a> </li>
+                <li style="list-style-type: none"><a href="/complaintstatus" style="text-decoration: none">View Complaint Status</a> </li>
+                <li style="list-style-type: none"><a href="/deletecomplaintpage" style="text-decoration: none">Delete Complaint</a> </li>
+            </ul>
+    </div>
+    <div class="container">
+        <div class="row" style="margin-left: 15%">
+            <div class="col">
+                <form style="background: white;padding:30px;border-radius: 10px; box-shadow: 0px 0px 10px 0px #000000;margin-top: 40px" class="needs-validation" method="post" novalidate action="/submitcomplaintdetails/">
+                    {% csrf_token %}
+                    {% if sucess_message %}
+                        <script>alert("Complaint submitted successfully!!")</script>
+                    {% endif %}
+                    <div class="form-group">
+                        <label style="font-weight: bold;font-size: 30px;">Complaint Registration Form</label>
+                    </div>
+                    <div class="form-row form-row-padding">
+                        <div class="form-group col-md-3">
+                            <label style="font-size: 20px;font-weight: bold">Department:</label>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <select class="form-control" id="dept" name="department" required>
+                                <option>Department of Agriculture</option>
+                                <option>Department of Healthcare</option>
+                                <option>Department of Education</option>
+                                <option>Department of Transport & Communication</option>
+                                <option>Department of Food & Civil Supplies</option>
+                                <option>Department of Energy</option>
+                            </select>
+                            <div class="invalid-feedback">This field is required</div>
+                        </div>
+                    </div>
+                    <div class="form-row form-row-padding">
+                        <div class="form-group col-md-3">
+                            <label style="font-size: 20px;font-weight: bold">Category:</label>
+                        </div>
+                        <div class="form-group col-md-5">
+                             <input type="text" class="form-control" id="cat" name="category" required maxlength="100">
+                            <div class="invalid-feedback">This field is required</div>
+                        </div>
+                    </div>
+                    <div class="form-row form-row-padding">
+                        <div class="form-group col-md-3">
+                            <label style="font-size: 20px;font-weight: bold">Address:</label>
+                        </div>
+                        <div class="form-group col-md-5">
+                             <input type="text" class="form-control" id="addr" name="address" required maxlength="100">
+                             <div class="invalid-feedback">This field is required</div>
+                        </div>
+                    </div>
+                    <div class="form-row form-row-padding">
+                        <div class="form-group col-md-3">
+                            <label style="font-size: 20px;font-weight: bold">State:</label>
+                        </div>
+                        <div class="form-group col-md-3">
+                             <input type="text" class="form-control" id="state" name="inpstate" required maxlength="50">
+                            <div class="invalid-feedback">This field is required</div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label style="font-size: 20px;font-weight: bold;margin-left: 30%">District:</label>
+                        </div>
+                         <div class="form-group col-md-3">
+                             <input type="text" class="form-control" id="dist" name="district" maxlength="50" required>
+                             <div class="invalid-feedback">This field is required</div>
+                        </div>
+                    </div>
+                    <div class="form-row form-row-padding">
+                        <div class="col-md-3">
+                            <label style="font-size: 20px;font-weight: bold">City:</label>
+                        </div>
+                         <div class=" form-group col-md-3">
+                            <input type="text" name="inp_city" id="city" class="form-control" required maxlength="50">
+                             <div class="invalid-feedback">This field is required</div>
+                        </div>
+                        <div class="col-md-3">
+                           <label style="font-size: 20px;font-weight: bold">Date of Occurence:</label>
+                        </div>
+                        <div class="col-md-3">
+                           <input type="date" id="date" class="form-control" name="doc" required>
+                            <div class="invalid-feedback">This field is required</div>
+                        </div>
+                    </div>
+                    <div class="form-row form-row-padding">
+                        <div class="col-md-3">
+                            <label style="font-size: 20px;font-weight: bold">Complaint Description:</label>
+                        </div>
+                        <div class="col-md-3">
+                            <textarea class="form-control rounded-0" id="desc" rows="3" name="description" required></textarea>
+                            <div class="invalid-feedback">This field is required</div>
+                        </div>
+                    </div>
+                    <div class="form-row" style="margin-top: 20px">
+                         <button type="submit" class="btn btn-success btn-lg" style="margin-left: 50%">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

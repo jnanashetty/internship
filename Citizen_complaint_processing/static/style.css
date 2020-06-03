@@ -1,0 +1,38 @@
+body{
+    background-image: url("background3.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.form-container{
+   border: 0px solid #ffffff;
+    padding: 60px 50px;
+    margin-top: 20vh;
+    -webkit-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+    box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+}
+.sidebar{
+    position: fixed;
+    height: 100%;
+    width: 250px;
+    background: #042331;
+}
+.form-row-padding{
+    margin-top: 30px;
+}
+.sidebar ul a{
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 65px;
+    font-size: 17px;
+    color: white;
+    padding-left: 30px;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255,255,255,.1);
+    border-bottom: 1px solid black;
+
+}
+ul li:hover a{
+    padding-left: 45px;
+}
